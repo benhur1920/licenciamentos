@@ -1,18 +1,11 @@
-from dados.licenciamentos import df
+
 import pandas as pd
-from datetime import date
 
 
-# Data atual
-hoje = date.today()
 
 
-# Cópia do DataFrame original
-df_filtrado = df.copy()
 
-#Calculo da ultima e menor data do sistema
-ultima_data =  df['Data_entrada'].max()
-primeira_data =  df['Data_entrada'].min()
+
 
 
 # Calculo dos totalizadores

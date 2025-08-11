@@ -9,10 +9,13 @@ st.set_page_config(
 )
 
 from streamlit_option_menu import option_menu
-from utils import sobre, graficos, dataframe, dashboards
-from utils.totalizadores import hoje, ultima_data,primeira_data
+from utils import sobre,  dataframe, dashboards
 
+from datetime import date
 CAMINHO_ARQUIVO_ORIGINAL = "dados/licenciamentos.parquet"
+
+# Data atual
+hoje = date.today()
 
 @st.cache_data
 def carregar_arquivo_parquet():
@@ -22,8 +25,17 @@ def carregar_arquivo_parquet():
         st.error(f"Erro ao carregar arquivo: {e}")
         return pd.DataFrame()  # retorna dataframe vazio para evitar crash
 
+
 df_Original = carregar_arquivo_parquet()
 df = df_Original
+
+# Cópia do DataFrame original
+df_filtrado = df.copy()
+
+#Calculo da ultima e menor data do sistema
+ultima_data =  df['Data_entrada'].max()
+primeira_data =  df['Data_entrada'].min()
+
 
 # Mostra a data mais recente, importar dos totalizadores.py
 st.write(f"📅 Última atualização dos dados: {ultima_data.strftime('%d/%m/%Y')}")
@@ -87,7 +99,7 @@ def filtros_aplicados_grafico_linha(df, nome_do_filtro):
         return df
     
 # Funcao de filtro apenas para o mes
-@st.cache_data
+
 def filtro_mes_nome(df):
     meses_ordenados = {
         'Janeiro': 1, 'Fevereiro': 2, 'Março': 3, 'Abril': 4,
