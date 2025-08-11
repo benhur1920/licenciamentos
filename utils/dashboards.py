@@ -125,30 +125,30 @@ def graficos(df_filtrado, df_filtrado_linha):
         st.plotly_chart(fig3, use_container_width=True)
     
    
+    
+    
     with aba5:
+        # Inicializa os estados da sessão
         if 'numero_processo' not in st.session_state:
             st.session_state.numero_processo = ''
         if 'consultou' not in st.session_state:
             st.session_state.consultou = False
 
-        with st.form(key='form_consulta'):
-            numero_processo = st.text_input("Informe o número do processo", value=st.session_state.numero_processo)
-            submit = st.form_submit_button("Consultar")
+        # Função de callback para o botão "Nova consulta"
+        def reset_state():
+            # Limpa o número e reseta o estado de consulta.
+            # É aqui que o campo de texto é realmente limpo.
+            st.session_state.numero_processo = ''
+            st.session_state.consultou = False
 
-        if submit:
-            st.session_state.numero_processo = numero_processo.strip()
-            st.session_state.consultou = True
-
+        # A lógica para exibir os resultados e o botão de Nova Consulta.
         if st.session_state.consultou:
-            if st.button("Nova consulta"):
-                st.session_state.numero_processo = ''
-                st.session_state.consultou = False
-                # O st.experimental_rerun() foi substituído por st.rerun()
-                st.rerun()
+            # Exibe o botão de Nova Consulta
+            st.button("Nova consulta", on_click=reset_state)
 
-        if st.session_state.consultou:
+            # Lógica para exibir os resultados (igual à sua)
             num = st.session_state.numero_processo
-
+            
             if num.isdigit():
                 num = int(num)
                 df_numero_processo = df_filtrado[df_filtrado['Num_processo'] == num]
@@ -161,6 +161,21 @@ def graficos(df_filtrado, df_filtrado_linha):
                     st.warning("Nenhum processo encontrado com esse número.")
             else:
                 st.error("Digite apenas números para o processo.")
+
+        # Se a consulta ainda não foi feita ou foi resetada, exibe o formulário.
+        else:
+            with st.form(key='form_consulta'):
+                # O valor inicial do campo de texto é o que está em st.session_state.numero_processo
+                # Isso garante que ele não seja limpo após o primeiro submit
+                numero_processo_input = st.text_input("Informe o número do processo", value=st.session_state.numero_processo)
+                submit = st.form_submit_button("Consultar")
+
+                if submit:
+                    # Ao clicar em Consultar, salva o valor digitado e atualiza o estado
+                    st.session_state.numero_processo = numero_processo_input.strip()
+                    st.session_state.consultou = True
+                    # st.rerun() é chamado para atualizar a tela e exibir os resultados
+                    st.rerun()
 
 def mainGraficos(df_filtrado, df_filtrado_linha):
     divisor()
