@@ -16,7 +16,11 @@ CAMINHO_ARQUIVO_ORIGINAL = "dados/licenciamentos.parquet"
 
 @st.cache_data
 def carregar_arquivo_parquet():
-    return pd.read_parquet(CAMINHO_ARQUIVO_ORIGINAL, engine='pyarrow')
+    try:
+        return pd.read_parquet(CAMINHO_ARQUIVO_ORIGINAL, engine='pyarrow')
+    except Exception as e:
+        st.error(f"Erro ao carregar arquivo: {e}")
+        return pd.DataFrame()  # retorna dataframe vazio para evitar crash
 
 df_Original = carregar_arquivo_parquet()
 df = df_Original
@@ -83,6 +87,7 @@ def filtros_aplicados_grafico_linha(df, nome_do_filtro):
         return df
     
 # Funcao de filtro apenas para o mes
+@st.cache_data
 def filtro_mes_nome(df):
     meses_ordenados = {
         'Janeiro': 1, 'Fevereiro': 2, 'Março': 3, 'Abril': 4,
