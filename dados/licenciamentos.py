@@ -121,35 +121,33 @@ def criar_a_coluna_Regiao(df):
     dicionario = {
         'Centro': [
             'Boa Vista', 'Cabanga', 'Coelhos', 'Ilha Do Leite', 'Ilha Joana Bezerra',
-            'Paissandu', 'Recife', 'Santo Amaro', 'Santo Antônio', 'Soledade', 'São José'
+            'Paissandu', 'Recife', 'Santo Amaro', 'Santo Antônio', 'Santo Antonio','Soledade', 'São José', 'Sao Jose'
         ],
         'Noroeste': [
-            'Aflitos', 'Alto Do Mandu', 'Alto José Bonifácio', 'Alto José Do Pinho', 'Apipucos',
-            'Brejo Da Guabiraba', 'Brejo De Beberibe', 'Casa Amarela', 'Casa Forte',
-            'Córrego Do Jenipapo', 'Derby', 'Dois Irmãos', 'Espinheiro', 'Graças', 'Guabiraba',
-            'Jaqueira', 'Macaxeira', 'Mangabeira', 'Monteiro', 'Morro Da Conceição',
-            'Nova Descoberta', 'Parnamirim', 'Passarinho', 'Pau Ferro', 'Poço', 'Santana',
-            'Sítio Dos Pintos', 'Tamarineira', 'Vasco Da Gama'
+            'Aflitos', 'Alto Do Mandu', 'Alto José Bonifácio', 'Alto Jose Bonifacio','Alto José Do Pinho','Alto Jose Do Pinho',  'Apipucos', 'Brejo Da Guabiraba', 'Brejo De Beberibe', 'Casa Amarela', 'Casa Forte',
+            'Córrego Do Jenipapo', 'Corrego Do Jenipapo', 'Derby', 'Dois Irmãos','Dois Irmaos' , 'Espinheiro', 'Graças', 'Gracas', 'Guabiraba', 'Jaqueira', 'Macaxeira', 'Mangabeira', 'Monteiro', 'Morro Da Conceição','Morro Da Conceicao',
+            'Nova Descoberta', 'Parnamirim', 'Passarinho', 'Pau Ferro', 'Poço', 'Poco', 'Santana',
+            'Sítio Dos Pintos','Sitio Dos Pintos' ,'Tamarineira', 'Vasco Da Gama'
         ],
         'Norte': [
-            'Alto Santa Terezinha', 'Arruda', 'Beberibe', 'Bomba Do Hemetério', 'Cajueiro',
-            'Campina Do Barreto', 'Campo Grande', 'Dois Unidos', 'Encruzilhada', 'Fundão',
-            'Hipódromo', 'Linha Do Tiro', 'Peixinhos', 'Ponto De Parada', 'Porto Da Madeira',
-            'Rosarinho', 'Torreão', 'Água Fria'
+            'Alto Santa Terezinha', 'Arruda', 'Beberibe', 'Bomba Do Hemetério', 'Bomba Do Hemeterio', 'Cajueiro',
+            'Campina Do Barreto', 'Campo Grande', 'Dois Unidos', 'Encruzilhada', 'Fundão', 'Fundao',
+            'Hipódromo','Hipodromo' ,'Linha Do Tiro', 'Peixinhos', 'Ponto De Parada', 'Porto Da Madeira',
+            'Rosarinho', 'Torreão', 'Torreao', 'Água Fria', 'Agua Fria'
         ],
         'Oeste': [
-            'Caxangá', 'Cidade Universitária', 'Cordeiro', 'Engenho Do Meio',
+            'Caxangá', 'Caxanga', 'Cidade Universitária', 'Cidade Universitaria', 'Cordeiro', 'Engenho Do Meio',
             'Ilha Do Retiro', 'Iputinga', 'Madalena', 'Prado', 'Torre',
-            'Torrões', 'Várzea', 'Zumbi'
+            'Torrões','Torroes', 'Várzea', 'Varzea', 'Zumbi'
         ],
         'Sudeste': [
-            'Afogados', 'Areias', 'Barro', 'Bongi', 'Caçote', 'Coqueiral', 'Curado',
-            'Estância', 'Jardim São Paulo', 'Jiquiá', 'Mangueira', 'Mustardinha',
-            'San Martin', 'Sancho', 'Tejipió', 'Totó'
+            'Afogados', 'Areias', 'Barro', 'Bongi', 'Caçote', 'Cacote', 'Coqueiral', 'Curado',
+            'Estância', 'Estancia', 'Jardim São Paulo', 'Jardim Sao Paulo', 'Jiquiá', 'Jiquia', 'Mangueira', 'Mustardinha',
+            'San Martin', 'Sancho', 'Tejipió','Tejipio', 'Totó', 'Toto'
         ],
         'Sul': [
-            'Boa Viagem', 'Brasília Teimosa', 'Cohab', 'Ibura',
-            'Imbiribeira', 'Ipsep', 'Jordão', 'Pina'
+            'Boa Viagem', 'Brasília Teimosa', 'Brasilia Teimosa', 'Cohab', 'Ibura',
+            'Imbiribeira', 'Ipsep', 'Jordão', 'Jordao', 'Pina'
         ]
     }
 

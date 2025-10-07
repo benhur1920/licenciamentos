@@ -1,7 +1,7 @@
 import matplotlib as pl
 import plotly.express as px
 import streamlit as st
-from utils.totalizadores import calculo_total_licenciamentos, calculo_valor_taxas, calculo_total_ambiental, calculo_total_sanitario, calculo_total_urbanistico, calculo_tempo_medio, calculo_total_alto, calculo_total_medio, calculo_total_baixo
+from utils.totalizadores import calculo_total_licenciamentos, calculo_valor_taxas, calculo_total_potencial, calculo_total_licenca, calculo_tempo_medio
 from utils.graficos import grafico_zona, grafico_bairro,  grafico_situacao, grafico_total_licenciamentos,grafico_total_licenciamentos_linha, grafico_assunto, grafico_mercantil, grafico_tipo_mercantil, grafico_mapa
 from utils.marcadores import divisor
 from appLicenciamentos import filtros_aplicados
@@ -24,9 +24,9 @@ def graficos(df_filtrado, df_filtrado_linha):
     # Calculo dos totalizadores importando o resultado das funcoes do arquivo totalizadores.py
     totalLicenciamentos = calculo_total_licenciamentos(df_filtrado)
     total_taxas = calculo_valor_taxas(df_filtrado)
-    total_urbanistico = calculo_total_urbanistico(df_filtrado)
-    total_sanitario = calculo_total_sanitario(df_filtrado)
-    total_ambiental= calculo_total_ambiental(df_filtrado)
+    total_urbanistico = calculo_total_licenca(df_filtrado, 'Urbanístico')
+    total_sanitario = calculo_total_licenca(df_filtrado, 'Sanitário')
+    total_ambiental= calculo_total_licenca(df_filtrado, 'Ambiental')
     tempoMedio = calculo_tempo_medio(df_filtrado)
     
     
@@ -45,13 +45,22 @@ def graficos(df_filtrado, df_filtrado_linha):
             st.metric("⏱️ Tempo medio de conclusão", value=(tempoMedio), border=True)
 
         divisor()
-        st.plotly_chart(fig5, use_container_width=True, stack=False)
+        st.plotly_chart(fig5, use_container_width=True, config={
+                "displaylogo": False,  # remove logo do Plotly
+                "modeBarButtonsToRemove": ["toImage"],  # opcional
+            })
 
         divisor()
-        st.plotly_chart(fig6, use_container_width=True, stack=False)
+        st.plotly_chart(fig6, use_container_width=True, config={
+                "displaylogo": False,  # remove logo do Plotly
+                "modeBarButtonsToRemove": ["toImage"],  # opcional
+            })
 
         divisor()
-        st.plotly_chart(fig7, use_container_width=True, stack=False)
+        st.plotly_chart(fig7, use_container_width=True, config={
+                "displaylogo": False,  # remove logo do Plotly
+                "modeBarButtonsToRemove": ["toImage"],  # opcional
+            })
 
     with aba2:
 
@@ -67,14 +76,27 @@ def graficos(df_filtrado, df_filtrado_linha):
             st.metric("🌳 Ambiental", value=(total_ambiental), border=True)
 
         divisor()        
-        st.plotly_chart(fig, use_container_width=True, stack=False)
+        st.plotly_chart(fig, use_container_width=True, config={
+                "displaylogo": False,  # remove logo do Plotly
+                "modeBarButtonsToRemove": ["toImage"],  # opcional
+            })
         divisor()
-        st.plotly_chart(fig1, use_container_width=True, stack=False)
+        st.plotly_chart(fig1, use_container_width=True, config={
+                "displaylogo": False,  # remove logo do Plotly
+                "modeBarButtonsToRemove": ["toImage"],  # opcional
+            })
         divisor()
-        st.plotly_chart(fig8, use_container_width=True, stack=False)
+        st.plotly_chart(fig8, use_container_width=True, config={
+                "displaylogo": False,  # remove logo do Plotly
+                "modeBarButtonsToRemove": ["toImage"],  # opcional
+            })
+        
 
     with aba3:
-        st.plotly_chart(fig9, use_container_width=True, stack=False)
+        st.plotly_chart(fig9, use_container_width=True, config={
+            "displaylogo": False,  # remove logo do Plotly
+            "modeBarButtonsToRemove": ["toImage"],  # opcional
+        })
         divisor()
         
         df_especial = df_filtrado[df_filtrado['Potencial_empreendimento'] != "Não Informado"]
@@ -84,9 +106,9 @@ def graficos(df_filtrado, df_filtrado_linha):
         if not df_especial.empty:
             
             df_especial_filtrado = filtros_aplicados(df_especial, 'Potencial_empreendimento')
-            total_alto = calculo_total_alto(df_especial_filtrado)
-            total_medio = calculo_total_medio(df_especial_filtrado)
-            total_baixo = calculo_total_baixo(df_especial_filtrado)
+            total_alto = calculo_total_potencial(df_especial_filtrado, "Alto")
+            total_medio = calculo_total_potencial(df_especial_filtrado, "Médio")
+            total_baixo = calculo_total_potencial(df_especial_filtrado, "Baixo")
             if not df_especial_filtrado.empty:
                 fig10 = grafico_tipo_mercantil(df_especial_filtrado)
                 if fig10:

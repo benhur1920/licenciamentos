@@ -1,18 +1,9 @@
 
 import pandas as pd
 
-
-
-
-
-
-
-
 # Calculo dos totalizadores
 def calculo_total_licenciamentos(df):
-    totalLicenciamentos = df.shape[0]
-    totalLicenciamentos = formatar_milhar(totalLicenciamentos)
-    return totalLicenciamentos
+    return formatar_milhar(df.shape[0])
 
 
 def calculo_valor_taxas(df):
@@ -22,39 +13,14 @@ def calculo_valor_taxas(df):
         .str.replace(',', '.')
     )
     df['Valor_pago'] = pd.to_numeric(df['Valor_pago'], errors='coerce')
-    total_taxas = round(df['Valor_pago'].sum(),2)
-    total_taxas = formatar_moeda_br(total_taxas)
+    total_taxas = formatar_moeda_br(round(df['Valor_pago'].sum(),2))
     return total_taxas
 
-def calculo_total_urbanistico(df):
-    totalUrbanistico = (df['Tipo_licenciamento'] == "Urbanístico").sum()
-    totalUrbanistico = formatar_milhar(totalUrbanistico)
-    return totalUrbanistico
+def calculo_total_licenca(df, tipo):
+    return formatar_milhar((df['Tipo_licenciamento'] == tipo).sum())
 
-def calculo_total_sanitario(df):
-    totalSanitario = (df['Tipo_licenciamento'] == "Sanitário").sum()
-    totalSanitario = formatar_milhar(totalSanitario)
-    return totalSanitario
-
-def calculo_total_ambiental(df):
-    totalAmbiental = (df['Tipo_licenciamento'] == "Ambiental").sum()
-    totalAmbiental = formatar_milhar(totalAmbiental)
-    return totalAmbiental
-
-def calculo_total_baixo(df):
-    totalUrbanistico = (df['Potencial_empreendimento'] == "Baixo").sum()
-    totalUrbanistico = formatar_milhar(totalUrbanistico)
-    return totalUrbanistico
-
-def calculo_total_medio(df):
-    totalSanitario = (df['Potencial_empreendimento'] == "Médio").sum()
-    totalSanitario = formatar_milhar(totalSanitario)
-    return totalSanitario
-
-def calculo_total_alto(df):
-    totalAmbiental = (df['Potencial_empreendimento'] == "Alto").sum()
-    totalAmbiental = formatar_milhar(totalAmbiental)
-    return totalAmbiental
+def calculo_total_potencial(df, potencial):
+    return formatar_milhar((df['Potencial_empreendimento'] == potencial).sum())
 
 
 def formatar_moeda_br(valor):

@@ -149,7 +149,8 @@ def grafico_assunto(df):
         title={'text':'Evolução dos Licenciamentos por Assunto', 'font': {'size': 26, 'color': texto}},
         font=dict(color=texto),
         xaxis=dict(showgrid=False, zeroline=False, tickfont=dict(color=texto), title_font=dict(color=texto, size=16)),
-        yaxis=dict(showgrid=False, zeroline=False, tickfont=dict(color=texto), title_font=dict(color=texto, size=16))
+        yaxis=dict(showgrid=False, zeroline=False, tickfont=dict(color=texto), title_font=dict(color=texto, size=16)),
+        
     )
     return fig8
 
