@@ -42,7 +42,7 @@ def graficos(df_filtrado, df_filtrado_linha):
             st.metric("💰 Valor total das taxas", value=(total_taxas), border=True)
             
         with col3:
-            st.metric("⏱️ Tempo medio de conclusão", value=(tempoMedio), border=True)
+            st.metric("⏱️ Tempo medio de conclusão em DIAS", value=(tempoMedio), border=True)
 
         divisor()
         st.plotly_chart(fig5, use_container_width=True, config={
