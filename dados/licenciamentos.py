@@ -215,7 +215,7 @@ def main():
     #print(df.info())
     #criar_arquivo_csv(df)
     # Salvar o parquet
-    df_filtrado.to_parquet("dados/licenciamentos.parquet", engine='pyarrow', index=False)
+    df_filtrado.to_parquet(r"C:\Users\Ben-Hur\Desktop\Emprel\streamlit_licenciamentos\dados\licenciamentos.parquet", engine='pyarrow', index=False)
     #df_filtrado.to_excel("dados/licenciamentos.xlsx", index=False)
     #df_filtrado.to_parquet("dados/licenciamentosFiltros.parquet", index=False)
     
