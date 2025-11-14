@@ -35,19 +35,20 @@ def transformar_na_coluna_data_conclusao_valores_em_branco_para_Nan(df):
     return df
 
 def criar_uma_coluna_tempo_conclusao_para_mostrar_resolucao_do_pedido_de_licencimento(df):
-    # Garante que a coluna estará pronta para operações numéricas
+    # Cria a coluna vazia
     df['Tempo_conclusao'] = pd.NA
 
-    # Calcula somente para os casos com data_conclusao preenchida
+    # Calcula diferença apenas onde existe data_conclusao
     mask = df['data_conclusao'].notna()
     df.loc[mask, 'Tempo_conclusao'] = (
         (df.loc[mask, 'data_conclusao'] - df.loc[mask, 'data_entrada']).dt.days
     )
 
-    # Converte a coluna para tipo numérico
+    # Garante que permanece numérica
     df['Tempo_conclusao'] = pd.to_numeric(df['Tempo_conclusao'], errors='coerce')
 
     return df
+
 
 
 # corrindo o nome dos bairros
@@ -66,17 +67,24 @@ def convertendo_para_string_coordenadas(df):
 
 # Substituindo o ponto por vírgula
 def substituindo_o_ponto_por_virgula(df):
-    # Verificar se as colunas 'latitude' e 'longitude' existem
-    if 'latitude' in df.columns and 'longitude' in df.columns:
-        # Tratar valores NaN antes de substituir
-        df['latitude'] = df['latitude'].fillna('').astype(
-            str).str.replace('.', ',', regex=False)
-        df['longitude'] = df['longitude'].fillna('').astype(
-            str).str.replace('.', ',', regex=False)
-        # ⚠️ Remover esta linha para manter a coluna numérica:
-        # df['Tempo_conclusao'] = df['Tempo_conclusao'].fillna('').astype(str).str.replace('.', ',', regex=False)
-    else:
-        print("As colunas 'latitude', 'longitude' não foram encontradas no DataFrame.")
+    # Apenas latitude
+    if 'latitude' in df.columns:
+        df['latitude'] = (
+            df['latitude']
+            .fillna('')
+            .astype(str)
+            .str.replace('.', ',', regex=False)
+        )
+
+    # Apenas longitude
+    if 'longitude' in df.columns:
+        df['longitude'] = (
+            df['longitude']
+            .fillna('')
+            .astype(str)
+            .str.replace('.', ',', regex=False)
+        )
+
     return df
 
 
