@@ -36,5 +36,5 @@ def formatar_milhar(valor):
 
 def calculo_tempo_medio(df):
     df['Tempo_conclusao'] = pd.to_numeric(df['Tempo_conclusao'], errors='coerce')
-    tempoMedio = round(df['Tempo_conclusao'].mean(), 2)
+    tempoMedio = int(round(df['Tempo_conclusao'].mean(), 0))
     return tempoMedio
