@@ -276,4 +276,5 @@ def grafico_bibliotecas(df):
         yaxis=dict(showgrid=False, zeroline=False, tickfont=dict(color=texto), title_font=dict(color=texto, size=16))
     )
     return fig7
+
 """

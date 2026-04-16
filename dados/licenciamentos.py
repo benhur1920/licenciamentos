@@ -192,9 +192,9 @@ def criar_a_coluna_ano_e_mes(df):
 
 
 def main():
-    urlUrbanismo = 'http://dados.recife.pe.gov.br/dataset/e2bd8f0b-1d62-4323-8159-8ebd6ed9eb4a/resource/77c885c4-76ca-45eb-9209-06c5d217122d/download/licenciamento_urbanistico.csv'
-    urlAmbiental = 'http://dados.recife.pe.gov.br/dataset/0bc5325e-0203-4577-9d56-bd3aef192f20/resource/921244a8-fe47-4192-a57d-084830337f99/download/licenciamento_ambiental.csv'
-    urlSanitario = 'http://dados.recife.pe.gov.br/dataset/3a4869e7-7021-485e-97fb-f25cd6422ea6/resource/6bb70e99-b7b9-4b2a-a213-adc757e3337a/download/licenciamento_sanitario.csv'
+    urlUrbanismo = 'https://dados.recife.pe.gov.br/dataset/f79dbcdf-ec99-4f4c-9b84-b33175c35528/resource/39927a3d-3235-436a-9dc8-df7f4ea3b720/download/licenciamento_urbanistico.csv'
+    urlAmbiental = 'https://dados.recife.pe.gov.br/dataset/75869ab7-ccce-40d6-aed6-4afca4c8cc82/resource/982d6c85-906a-4ea8-90e0-31f55eac63f9/download/licenciamento_ambiental.csv'
+    urlSanitario = 'https://dados.recife.pe.gov.br/dataset/8535916b-588f-4006-bb1a-5d9c587a92d7/resource/d09900c8-14f2-4dc4-a128-b73a514ec791/download/licenciamento_sanitario.csv'
     Urbanismo = entrada_de_dados(urlUrbanismo)
     Ambiental = entrada_de_dados(urlAmbiental)
     Sanitario = entrada_de_dados(urlSanitario)
