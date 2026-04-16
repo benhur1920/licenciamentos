@@ -3,7 +3,12 @@ import unidecode
 import locale
 
 def entrada_de_dados(url):
-    dados = pd.read_csv(url, sep=';', encoding='utf-8-sig')
+    dados = pd.read_csv(url, sep=';', encoding='latin1')
+    
+    dados = dados.applymap(
+        lambda x: x.encode('latin1').decode('utf-8') if isinstance(x, str) else x
+    )
+    
     return dados
 
 
