@@ -3,7 +3,7 @@ import unidecode
 import locale
 
 def entrada_de_dados(url):
-    dados = pd.read_csv(url, sep=';', encoding='utf-8')
+    dados = pd.read_csv(url, sep=';', encoding='utf-8-sig')
     return dados
 
 
