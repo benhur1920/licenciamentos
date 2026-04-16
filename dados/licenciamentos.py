@@ -1,14 +1,12 @@
 import pandas as pd
 import unidecode
 import locale
+import requests
+from io import StringIO
 
 def entrada_de_dados(url):
-    dados = pd.read_csv(url, sep=';', encoding='latin1')
-    
-    dados = dados.applymap(
-        lambda x: x.encode('latin1').decode('utf-8') if isinstance(x, str) else x
-    )
-    
+    response = requests.get(url)
+    dados = pd.read_csv(StringIO(response.text), sep=';')
     return dados
 
 
