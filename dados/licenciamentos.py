@@ -6,7 +6,26 @@ from io import StringIO
 
 def entrada_de_dados(url):
     response = requests.get(url)
-    dados = pd.read_csv(StringIO(response.text), sep=';')
+
+    content = response.text
+
+    linhas = content.splitlines()
+    linhas_corrigidas = []
+
+    for linha in linhas:
+        campos = linha.split(";")
+
+        if len(campos) == 34:
+            print("Linha corrigida automaticamente.")
+            campos[12] = campos[12] + campos[13]
+            del campos[13]
+
+        linhas_corrigidas.append(";".join(campos))
+
+    content = "\n".join(linhas_corrigidas)
+
+    dados = pd.read_csv(StringIO(content), sep=';')
+
     return dados
 
 
